@@ -1,0 +1,31 @@
+# Ignore general files
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignore Django-specific files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+__pycache__
+*.pyc
+
+# Ignore React-specific files
+node_modules
+build
+.DS_Store
+
+# Ignore Docker-specific files
+.dockerignore
+Dockerfile
+.dockerignore
+.dockerignore
+.dockerignore
+.dockerignore
