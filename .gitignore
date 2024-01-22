@@ -1,0 +1,41 @@
+# Ignore node_modules in the React frontend
+/react_frontend/node_modules/
+
+# Ignore build artifacts
+/react_frontend/build/
+/react_frontend/dist/
+
+# Ignore .env files (environment variables)
+/react_frontend/.env
+
+# Ignore __pycache__ and .pyc files in Django backend
+/django_backend/__pycache__/
+/django_backend/*.pyc
+
+# Ignore database files
+/db.sqlite3
+
+# Ignore static files in Django
+/django_backend/static/
+
+# Ignore media files in Django
+/django_backend/media/
+
+# Ignore virtual environment
+/venv/
+
+# Ignore local settings
+/django_backend/local_settings.py
+
+# Ignore IDE and text editor files
+*.idea/
+.vscode/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore logs
+*.log
+
+# Ignore .DS_Store files (macOS)
+.DS_Store
