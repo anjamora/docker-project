@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g$2in_lb#+^un4x@e2#f9fvc_sg^=$zvu9+i)dva^e12=b+83d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangobackend', 'localhost']
 
 
 # Application definition
@@ -90,16 +90,28 @@ WSGI_APPLICATION = 'django_backend.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webapp-db',
-        'USER': 'anjamora',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',  # Set to the IP address or domain of your PostgreSQL server
-        'PORT': '5432',  # Typically 5432
+if 'DOCKER_ENV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'webapp-db',
+            'USER': 'anjamora',
+            'PASSWORD': 'password',
+            'HOST': 'webapp-db',  # Container name for Docker
+            'PORT': '5432',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'webapp-db',
+            'USER': 'anjamora',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',  # Local development
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -144,6 +156,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React development server
+    "http://localhost:3000",
+    "http://react_frontend:3000",# React development server
     # Add other origins as needed
 ]

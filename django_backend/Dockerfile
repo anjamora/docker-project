@@ -18,7 +18,7 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Define environment variable for Django
-ENV DJANGO_SETTINGS_MODULE=django_backend.settings
+ENV DJANGO_SETTINGS_MODULE=django_backend.settings DOCKER_ENV=true
 
 # Run app.py when the container launches
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

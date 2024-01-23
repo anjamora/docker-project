@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  webapp-db:
+    image: postgres:15.1-alpine
+    environment:
+      POSTGRES_USER: anjamora
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webapp-db
+    networks:
+      - backend-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  djangobackend:
+    build:
+      context: ./django_backend
+    image: django_backend:v1.0
+    depends_on:
+      - webapp-db
+    networks:
+      - frontend-network
+      - backend-network
+    environment:
+      DATABASE_URL: postgres://anjamora:password@webapp-db:5432/webapp-db
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  react_frontend:
+    build:
+      context: ./react_frontend
+    image: react_frontend:v1.0
+    depends_on:
+      - webapp-db
+    networks:
+      - frontend-network
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ${PWD}/react_frontend/src/setupProxy.js:/usr/src/app/src/setupProxy.js
+
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
+
+volumes:
+  pgdata:
