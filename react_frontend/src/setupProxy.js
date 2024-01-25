@@ -6,7 +6,7 @@ module.exports = function (app) {
 
   // Create a proxy middleware for your API
   const apiProxy = createProxyMiddleware(apiEndpoint, {
-    target: 'http://djangobackend:8000', // Use the service name
+    target: 'http://localhost:8000', // Use the service name
     changeOrigin: true,
     headers: {
       'Host': 'djangobackend', // Set the correct service name

@@ -22,7 +22,8 @@
 /django_backend/media/
 
 # Ignore virtual environment
-/venv/
+*/venv/
+
 
 # Ignore local settings
 /django_backend/local_settings.py

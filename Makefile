@@ -1,15 +1,15 @@
-.PHONY: compose-build
-compose-build:
-	docker compose build
+# Makefile
 
-.PHONY: compose-up
-compose-up:
-	docker compose up
+.PHONY: build up down test
 
-.PHONY: compose-up-build
-compose-up-build:
-	docker compose up --build
+build:
+    docker-compose build
 
-.PHONY: compose-down
-compose-down:
-	docker compose down
+up:
+    docker-compose up -d
+
+down:
+    docker-compose down
+
+test:
+    docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build

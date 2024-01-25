@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  djangobackend:
+    command: ["python", "manage.py", "test"]
+    
+
+  react_cd frontend:
+    command: ["npm", "test"]
